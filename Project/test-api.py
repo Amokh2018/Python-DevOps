@@ -1,10 +1,10 @@
 import requests
 
-add_URL = "http://localhost:5001/add"
-sub_URL = "http://localhost:5001/subtract"
+add_URL = "https://math-app-cxahara9dxdpcahb.canadacentral-01.azurewebsites.net/add"
+sub_URL = "https://math-app-cxahara9dxdpcahb.canadacentral-01.azurewebsites.net/subtract"
 a = 5
 b = 6
 data = {"a":a, "b":b }
-response = requests.post(sub_URL, json=data)
+response = requests.post(add_URL, json=data)
 
 print(f"the answer is {response.json()['result']}")

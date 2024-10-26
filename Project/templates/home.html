@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Calculator</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 500px; margin: auto; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; }
+        input[type="number"] { width: 100%; padding: 8px; }
+        button { padding: 10px 20px; background-color: #007BFF; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+        .result { margin-top: 20px; font-size: 1.1em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Loan Calculator</h2>
+        <div class="input-group">
+            <label for="loan_amount">Loan Amount ($)</label>
+            <input type="number" id="loan_amount" name="loan_amount" required>
+        </div>
+        <div class="input-group">
+            <label for="duration">Duration (years)</label>
+            <input type="number" id="duration" name="duration" required>
+        </div>
+        <div class="input-group">
+            <label for="interest_rate">Interest Rate (%)</label>
+            <input type="number" id="interest_rate" name="interest_rate" step="0.01" required>
+        </div>
+        <button onclick="calculateLoan()">Calculate</button>
+
+        <div class="result">
+            <p>Monthly Payment: $<span id="monthly_payment">0.00</span></p>
+            <p>Total Cost of Loan: $<span id="total_cost">0.00</span></p>
+        </div>
+    </div>
+
+    <script>
+        function calculateLoan() {
+            // Get input values
+            const loan_amount = parseFloat(document.getElementById('loan_amount').value);
+            const duration = parseInt(document.getElementById('duration').value);
+            const interest_rate = parseFloat(document.getElementById('interest_rate').value);
+
+            // Send AJAX request to calculate loan payment
+            $.post('/calculate', { loan_amount, duration, interest_rate }, function(data) {
+                // Update the UI with the calculation results
+                $('#monthly_payment').text(data.monthly_payment.toFixed(2));
+                $('#total_cost').text(data.total_cost.toFixed(2));
+            });
+        }
+    </script>
+</body>
+</html>
