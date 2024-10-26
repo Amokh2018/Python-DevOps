@@ -1,3 +1,5 @@
 *.csv
 /private
-/Project
+Project/.venv/
+*.log
+documentation/
