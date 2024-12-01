@@ -1,5 +1,6 @@
 *.csv
 /private
-Project/.venv/
+/Project/.venv
 *.log
 documentation/
+/.venv
