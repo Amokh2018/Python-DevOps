@@ -23,19 +23,19 @@ jobs:
       # Step 3: Install dependencies using Makefile
       - name: Install dependencies using Makefile
         run: |
-          cd Project
+          cd Loan_sim
           make init
 
       # Step 4: Run tests using Makefile
       - name: Run tests using Makefile
         run: |
-          cd Project
+          cd Loan_sim
           make test
 
       # Step 5: Zip artifact for deployment
       - name: Zip artifact for deployment
         run: |
-          cd Project
+          cd Loan_sim
           zip -r ../release.zip ./*
 
       # Step 6: Upload the artifact for deployment jobs
